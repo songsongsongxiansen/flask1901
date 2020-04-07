@@ -29,13 +29,19 @@ class Movie(db.Model):
     year = db.Column(db.String(4))
 
 
+# 模板上下文处理函数
+@app.context_processor
+def common_user():
+    user = User.query.first()
+    return dict(user=user)
+
+
 # views
 @app.route('/')
 def index():
 
-    user = User.query.first()
     movies = Movie.query.all()
-    return render_template('index.html',user=user,movies=movies)
+    return render_template('index.html',movies=movies)
     
     
     
@@ -74,4 +80,11 @@ def forge():
         db.session.add(movie)
     db.session.commit()
     click.echo("插入数据完成")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # 返回模板和状态码
+    return render_template('404.html')
+
+
 
