@@ -4,7 +4,7 @@ import sys
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash,check_password_hash
 import click
-from flask import Flask,render_template,flash,redirect,request
+from flask import Flask,render_template,flash,redirect,request,url_for
 from flask_login import LoginManager,UserMixin,login_user,logout_user,login_required,current_user
 
 WIN = sys.platform.startswith('win')
