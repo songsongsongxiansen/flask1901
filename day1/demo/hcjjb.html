@@ -41,7 +41,7 @@
             <li>
                 <div class="checkbox">
                     <label for="">
-                        <input class="js-item" type="checkbox">ipad
+                        <input class="js-item" type="checkbox">苹果
                     </label>
                 </div>
             </li>
@@ -60,6 +60,13 @@
                 </div>
             </li>
         </ul>
+
+        <!-- 改变标题 -->
+        <div class="footer">
+            <hr>
+            <span>改变标题</span>
+            <input type="text" value="我的购物车清单" class="js-change-title">
+        </div>
     </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -77,7 +84,7 @@
             $div = $('<div>').addClass('checkbox').appendTo($li);
             $label = $('<label>').appendTo($div);
             $('<input>').addClass('js-item').attr('type','checkbox').appendTo($label).click(toggleRemoved)
-
+            
             $label.append(value)
             $('.js-new-item').val('')
         }
@@ -86,8 +93,13 @@
             $(ev.currentTarget).closest('li').toggleClass('removed');
         }
 
+        function onChangeTitle(){
+            $('h2').text($('.js-change-title').val())
+        }
+
         $('.js-add').click(onAdd)
         $('.js-item').click(toggleRemoved)
+        $('.js-change-title').keyup(onChangeTitle)
     })
 </script>
-</html> 
+</html>
